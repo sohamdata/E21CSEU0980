@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ProductList from '../components/ProductList';
 import axios from '../utils/axios';
+import { Product } from '../utils/types';
 
 export default function App() {
     const [company, setCompany] = useState<string>('');
@@ -8,18 +9,32 @@ export default function App() {
     const [topN, setTopN] = useState<number>(10);
     const [minPrice, setMinPrice] = useState<number>(0);
     const [maxPrice, setMaxPrice] = useState<number>(1000);
-    // const [products, setProducts] = useState<any[]>([]);
+    const [products, setProducts] = useState<Product[] | []>([]);
 
-    // MOCK
-    const [products, setProducts] = useState<any[]>([
-        {
-            "productName": "Laptop 8",
-            "price": 511,
-            "rating": 0.47,
-            "discount": 87,
-            "availability": "yes"
-        }
-    ]);
+    // MOCK : Uncomment below code to test the UI
+    // const [products, setProducts] = useState<Product[] | []>([
+    //     {
+    //         "productName": "Laptop 8",
+    //         "price": 511,
+    //         "rating": 0.47,
+    //         "discount": 87,
+    //         "availability": "yes"
+    //     },
+    //     {
+    //         "productName": "Laptop 1",
+    //         "price": 211,
+    //         "rating": 0.47,
+    //         "discount": 87,
+    //         "availability": "yes"
+    //     },
+    //     {
+    //         "productName": "Laptop 8",
+    //         "price": 5311,
+    //         "rating": 0.47,
+    //         "discount": 87,
+    //         "availability": "out-of-stock"
+    //     },
+    // ]);
 
     const fetchProducts = async () => {
         console.log(company, category, topN, minPrice, maxPrice);
