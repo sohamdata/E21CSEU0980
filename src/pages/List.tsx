@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ProductList from '../components/ProductList';
 import axios from '../utils/axios';
 
-export default function List() {
+export default function App() {
     const [company, setCompany] = useState<string>('');
     const [category, setCategory] = useState<string>('');
     const [topN, setTopN] = useState<number>(10);
