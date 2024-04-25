@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ProductList from './components/ProductList';
 import axios from './utils/axios';
 
-const App: React.FC = () => {
+export default function App() {
   const [company, setCompany] = useState<string>('');
   const [category, setCategory] = useState<string>('');
   const [topN, setTopN] = useState<number>(10);
@@ -10,10 +10,21 @@ const App: React.FC = () => {
   const [maxPrice, setMaxPrice] = useState<number>(1000);
   const [products, setProducts] = useState<any[]>([]);
 
+  // MOCK
+  // const [products, setProducts] = useState<any[]>([
+  //   {
+  //     "productName": "Laptop 8",
+  //     "price": 511,
+  //     "rating": 0.47,
+  //     "discount": 87,
+  //     "availability": "yes"
+  //   }
+  // ]);
+
 
   const fetchProducts = async () => {
     console.log(company, category, topN, minPrice, maxPrice);
-    if (company && category && topN !== 0 && minPrice !== null && maxPrice !== null) {
+    if (company && category && topN !== 0 && minPrice !== 0 && maxPrice !== null) {
       try {
         const response = await axios.get(`/test/companies/${company}/categories/${category}/products?top=${topN}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
         console.log("resposne:::::::::::::::", response.data);
@@ -84,5 +95,3 @@ const App: React.FC = () => {
     </div>
   );
 };
-
-export default App;

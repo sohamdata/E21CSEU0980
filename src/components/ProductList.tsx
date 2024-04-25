@@ -1,32 +1,19 @@
-interface Product {
-    productName: string;
-    price: number;
-    rating: number;
-    discount: number;
-    availability: string;
-}
+import ProductCard from './ProductCard';
+import { Product } from '../utils/types';
 
-interface Props {
+interface ProductListProps {
     products: Product[];
 }
 
-const ProductList: React.FC<Props> = ({ products }) => {
+export default function ProductList({ products }: ProductListProps) {
     return (
         <div>
             <h2 className="text-lg font-bold mb-4">Product List</h2>
-            <ul>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {products?.map((product, index) => (
-                    <li key={index} className="mb-2">
-                        <div>{product?.productName}</div>
-                        <div>Price: ${product?.price}</div>
-                        <div>Rating: {product?.rating}</div>
-                        <div>Discount: {product?.discount}%</div>
-                        <div>Availability: {product?.availability}</div>
-                    </li>
+                    <ProductCard key={index} product={product} />
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };
-
-export default ProductList;
